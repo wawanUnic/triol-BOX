@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Content-type: text/plain"
+echo ""
+/sbin/ifstatus wan | grep '"address"' | head -n1 | sed 's/[^0-9\.]//g'
