@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triol-BOX — Network Topology</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header">
+    <img src="logo.png" class="logo" alt="Logo">
+
+    <div class="header-text">
+        <span class="header-title">Triol-BOX</span>
+        <span class="header-sub">(основано на TP-Link TL-WR740 100Mbit с openWRT)</span>
+
+        <div class="warning">
+            ВНИМАНИЕ: соединение не шифруется.<br>
+            Не передавайте логины и пароли через веб‑интерфейс.
+        </div>
+
+        <div class="ssh-note">
+            Используйте SSH‑доступ и работайте через localhost —
+            так трафик будет шифрован.
+        </div>
+    </div>
+</div>
+
+<div class="topology-wrapper">
+    <div id="wan-inline" class="red" style="margin-left: 52ch; margin-bottom: 2px;">
+        WAN (...)
+    </div>
+<pre id="topology">
+                                                    │WAN <span id="wan-inline" class="red"></span>
+                                          ┌─────────┴───────────┐TP-link_BOX
+                                          │  WAN  DHCP-client   │
+                                          │                     │
+                                          │:22 → 192.168.7.1:22 │
+                                          │:80 → 192.168.7.1:80 │
+                                          │:81 → 192.168.7.1:81 │
+                                          │:82 → 192.168.7.11:80│
+                                          │:83 → 192.168.7.12:80│
+                                   \ │ /  │:84 → 192.168.7.13:80│
+                                    \┬/   │:85 → 192.168.7.14:80│
+       WiFi AP (2.4GHz): TP-link_BOX │    │:86 → 192.168.7.11:81│
+                                     └────│  LAN  192.168.7.1   │
+                                          └───────┬┬─┬┬─────────┘
+                                                  ││ ││LAN
+            ┌──────────────────────────┬──────────┴┘ └┴───────────┬──────────────────────────┐
+            │ 1                        │2                         │3                         │4
+            │                          │                          │                          │
+            │WAN                       │WAN                       │WAN                       │WAN
+ ┌──────────┴─────box1┐     ┌──────────┴─────box2┐     ┌──────────┴─────box3┐     ┌──────────┴─────box4┐
+ │  WAN 192.168.7.11  │     │  WAN 192.168.7.12  │     │  WAN 192.168.7.13  │     │  WAN 192.168.7.14  │
+ │                    │     │                    │     │                    │     │                    │
+ │                    │     │                    │     │                    │     │                    │
+ │:22 → 192.168.8.1:22│     │:22 → 192.168.8.1:22│     │:22 → 192.168.8.1:22│     │:22 → 192.168.8.1:22│
+ │:23 → 192.168.8.3:22│     │:23 → 192.168.8.3:22│     │:23 → 192.168.8.3:22│     │:23 → 192.168.8.3:22│
+ │:80 → 192.168.8.1:80│     │:80 → 192.168.8.1:80│     │:80 → 192.168.8.1:80│     │:80 → 192.168.8.1:80│
+ │:81 → 192.168.8.9:80│     │                    │     │                    │     │                    │
+ │                    │     │                    │     │                    │     │                    │
+ │  LAN 192.168.8.1   │     │  LAN 192.168.8.1   │     │  LAN 192.168.8.1   │     │  LAN 192.168.8.1   │
+ └───────┬┬──┬┬───────┘     └───────┬┬──┬┬───────┘     └───────┬┬──┬┬───────┘     └───────┬┬──┬┬───────┘
+         ││  ││LAN                  ││  ││LAN                  ││  ││LAN                  ││  ││LAN
+ ┌─────┬─┴┘  └┴─┬─────┐     ┌─────┬─┴┘  └┴─┬─────┐     ┌─────┬─┴┘  └┴─┬─────┐     ┌─────┬─┴┘  └┴─┬─────┐
+ │1    │2       │3    │4    │1    │2       │3    │4    │1    │2       │3    │4    │1    │2       │3    │4
+       │              │                          │                          │                          │
+       │        ┌─────┴─────┐              ┌─────┴─────┐              ┌─────┴─────┐              ┌─────┴─────┐
+       │        │192.168.8.3│ УМКА №1      │192.168.8.3│ УМКА №2      │192.168.8.3│ УМКА №3      │192.168.8.3│ УМКА №4
+       │        └───────────┘              └───────────┘              └───────────┘              └───────────┘
+ ┌─────┴─────┐
+ │192.168.8.9│ Raspberry Pi
+ └───────────┘
+</pre>
+</div>
+
+<div class="footer">
+Сайт: <a href="https://panamarchuk.pl">www.panamarchuk.pl</a><br>
+GitHub: <a href="https://github.com/wawanUnic">github.com/wawanUnic</a><br>
+LinkedIn: <a href="https://www.linkedin.com/in/panamarchuk/">linkedin.com/in/panamarchuk</a>
+</div>
+
+<div class="copyright">
+Triol-BOX (с) 2026
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
