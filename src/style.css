@@ -1,0 +1,115 @@
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #111;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    width: 80px;
+    margin-right: 15px;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.header-sub {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.warning {
+    margin-top: 10px;
+    color: #ff5555;
+    font-size: 14px;
+}
+
+.ssh-note {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* ASCII SCHEMA */
+.topology-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px;
+    position: relative; /* важно! чтобы зоны позиционировались внутри */
+}
+
+/* МОНОШИРИННЫЙ ШРИФТ ДЛЯ ВСЕГО */
+#topology {
+    font-family: "Courier New", Courier, monospace;
+    white-space: pre;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Цвета */
+.red {
+    color: #ff4444;
+}
+
+.white {
+    color: #ffffff;
+}
+
+.green {
+    color: #00ff00;
+}
+
+.blue {
+    color: #9370D8;
+}
+
+/* Кликабельные зоны */
+.click-zone {
+    position: absolute;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2); /* прозрачная */
+    z-index: 999999;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    #topology {
+        font-size: 11px;
+    }
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.footer a {
+    color: #4af;
+}
+
+.copyright {
+    text-align: center;
+    margin: 10px 0 20px;
+    color: #777;
+}
