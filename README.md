@@ -11,7 +11,7 @@ no matching host key type found. Their offer: ssh-rsa
 ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa root@192.168.8.1
 ```
 
-Проблема2: Невозмодно скопировать файлы. Windows SCP использует SFTP, а не SCP. Хотя команда называется SCP, Windows‑клиент фактически работает через SFTP, а на роутере SFTP‑сервера нет. Поэтому появилась ошибка:
+Проблема2: Невозможно скопировать файлы. Windows SCP использует SFTP, а не SCP. Хотя команда называется SCP, Windows‑клиент фактически работает через SFTP, а на роутере SFTP‑сервера нет. Поэтому появилась ошибка:
 ```
 ash: /usr/libexec/sftp-server: not found
 ```
