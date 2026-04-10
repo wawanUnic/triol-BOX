@@ -1,6 +1,7 @@
 # triol-BOX
 Triol-BOX
 
+![Triol-BOX](pics/web-page.png)
 
 Проблема1: Клиент Windows OpenSSH не принимает старый ключ ssh-rsa. Старые роутеры (особенно с Dropbear) поддерживают только ssh-rsa. Новые версии OpenSSH в Windows его отключили, поэтому сначала возникла ошибка:
 ```
