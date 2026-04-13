@@ -11,7 +11,7 @@ TP‑Link TL‑WR740N v4
 
 WAN‑маршрут мы не трогаем, поэтому доступ всегда восстанавливается.
 
-# 1. Включение Wi‑Fi‑радио
+### 1. Включение Wi‑Fi‑радио
 ```
 uci set wireless.radio0.disabled='0'
 uci commit wireless
@@ -53,7 +53,7 @@ wifi status
 }
 ```
 
-# 2. Создание Wi‑Fi‑клиента (режим STA)
+### 2. Создание Wi‑Fi‑клиента (режим STA)
 ```
 uci add wireless wifi-iface
 uci set wireless.@wifi-iface[-1].device='radio0'
@@ -67,7 +67,7 @@ wifi reload
 ```
 Wi‑Fi перезапустится, SSH может оборваться. Снова переподключитесь по WAN.
 
-# 3. Создание интерфейса WWAN (DHCP‑клиент)
+### 3. Создание интерфейса WWAN (DHCP‑клиент)
 ```
 uci set network.wwan=interface
 uci set network.wwan.proto='dhcp'
@@ -84,7 +84,7 @@ ifup wwan
 ```
 WAN остаётся основным → SSH не пропадает.
 
-# 4. Проверка подключения WWAN
+### 4. Проверка подключения WWAN
 ``` 
 status wwan
 {
@@ -164,7 +164,7 @@ status wwan
 ```
 Если интерфейс получил IP (например 192.168.18.x) — всё работает.
 
-# 5. Создание firewall‑зоны WWAN
+### 5. Создание firewall‑зоны WWAN
 ```
 uci add firewall zone
 uci set firewall.@zone[-1].name='wwan'
@@ -177,7 +177,7 @@ uci commit firewall
 ```
 --- reload ---
 
-# 6 Разрешение маршрутизации WAN ↔ WWAN
+### 6 Разрешение маршрутизации WAN ↔ WWAN
 WAN → WWAN:
 ```
 uci add firewall forwarding
@@ -197,7 +197,7 @@ uci commit firewall
 ```
 --- reload ---
 
-# 7. Проверка связи с устройством
+### 7. Проверка связи с устройством
 На роутере:
 ```
 ping 192.168.18.2
@@ -208,7 +208,7 @@ ping 192.168.18.2
 ```
 Если пингуется — всё готово.
 
-# 8. (Необязательно) Проброс порта WAN → устройство
+### 8. (Необязательно) Проброс порта WAN → устройство
 Пример: WAN:8080 → 192.168.18.2:80
 ```
 uci add firewall redirect
@@ -223,27 +223,22 @@ uci commit firewall
 /etc/init.d/firewall restart
 ```
 
-# Результат. После выполнения всех шагов:
+### Результат. После выполнения всех шагов:
 - SSH через WAN остаётся доступным
 - OpenWRT подключается к вашему устройству по Wi‑Fi
 - WWAN не ломает маршрутизацию
 - WAN → WWAN → устройство работает
 - Можно пробрасывать порты на устройство
 
+### Включение маршрутизации LAN → WWAN в OpenWRT
 
-
-
-# ============================================================
-# Включение маршрутизации LAN → WWAN в OpenWRT
-# ============================================================
-
-# 1. Разрешить форвардинг LAN → WWAN
+### 1. Разрешить форвардинг LAN → WWAN
 uci add firewall forwarding
 uci set firewall.@forwarding[-1].src='lan'
 uci set firewall.@forwarding[-1].dest='wwan'
 
-# 2. Включить NAT (masquerading) на зоне WWAN
-#    Это обязательно, иначе Wi‑Fi‑устройство не сможет отвечать LAN‑клиентам.
+### 2. Включить NAT (masquerading) на зоне WWAN
+###    Это обязательно, иначе Wi‑Fi‑устройство не сможет отвечать LAN‑клиентам.
 uci set firewall.@zone[2].masq='1'
 
 # 3. Применить настройки
